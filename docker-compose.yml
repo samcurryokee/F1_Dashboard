@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: f1_dashboard_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: f1_dashboard
+    ports:
+      - "5433:5432"
+    volumes:
+      - f1_postgres_data:/var/lib/postgresql/data
+
+volumes:
+  f1_postgres_data:
