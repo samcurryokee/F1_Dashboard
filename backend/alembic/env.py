@@ -23,9 +23,9 @@ if config.config_file_name is not None:
 
 # Import your models here
 # For now, use a placeholder - you'll replace this when you create models
-# from app.models import Base
-# target_metadata = Base.metadata
-target_metadata = None
+from app.models import Base
+target_metadata = Base.metadata
+
 
 # Get database URL from environment
 database_url = os.getenv("DATABASE_URL")
