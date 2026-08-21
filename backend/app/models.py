@@ -81,8 +81,32 @@ class Lap(Base):
     driver_number: Mapped[int]
     lap_number: Mapped[int]
     lap_duration: Mapped[float | None] = mapped_column(Float, nullable=True)
+    duration_sector_1: Mapped[float | None] = mapped_column(Float, nullable=True)
+    duration_sector_2: Mapped[float | None] = mapped_column(Float, nullable=True)
+    duration_sector_3: Mapped[float | None] = mapped_column(Float, nullable=True)
     date_start: Mapped[datetime] = mapped_column(TIMESTAMP(timezone=True))
     is_pit_out_lap: Mapped[bool] = mapped_column(default=False)
+
+
+class Stint(Base):
+    """
+    A single tire stint: one compound run between pit stops.
+    A driver has multiple stints per session (one per compound change).
+    """
+    __tablename__ = "stints"
+    __table_args__ = (
+        UniqueConstraint("session_id", "driver_number", "stint_number",
+                          name="uq_stint_per_driver"),
+    )
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    session_id: Mapped[int] = mapped_column(ForeignKey("sessions.id", ondelete="CASCADE"))
+    driver_number: Mapped[int]
+    stint_number: Mapped[int]
+    compound: Mapped[str] = mapped_column(String(20))
+    lap_start: Mapped[int | None] = mapped_column(nullable=True)
+    lap_end: Mapped[int | None] = mapped_column(nullable=True)
+    tyre_age_at_start: Mapped[int | None] = mapped_column(nullable=True)
 
 
 

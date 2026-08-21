@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600;700;900&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+:root {
+  --bg: #0f0f14;
+  --surface: #181824;
+  --surface-2: #1f1f2e;
+  --border: #262636;
+  --border-strong: #34344a;
+
+  --text: #eef0f4;
+  --text-dim: #9195a3;
+  --text-faint: #5c6070;
+
+  --accent: #e10600;
+  --accent-dim: rgba(225, 6, 0, 0.14);
+  --accent-border: rgba(225, 6, 0, 0.4);
+
+  --live-green: #00e676;
+  --live-green-dim: rgba(0, 230, 118, 0.14);
+
+  --stripe-fallback: #34344a;
+
+  --font-display: 'Titillium Web', system-ui, sans-serif;
+  --font-sans: 'IBM Plex Sans', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, Consolas, monospace;
+
+  --nav-height: 64px;
+
+  color-scheme: dark;
+  font-family: var(--font-sans);
+  color: var(--text);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Layered background, set once here so it applies to every page:
+   red glow top-left, green glow top-right, dark base gradient,
+   and a fine grid texture underneath everything — telemetry-graph feel. */
+body {
+  margin: 0;
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(ellipse 1100px 550px at 12% -8%, rgba(225, 6, 0, 0.10), transparent 60%),
+    radial-gradient(ellipse 900px 500px at 105% 15%, rgba(0, 230, 118, 0.06), transparent 60%),
+    linear-gradient(180deg, #101016 0%, #0a0a0e 100%),
+    repeating-linear-gradient(0deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 42px),
+    repeating-linear-gradient(90deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 42px);
+  background-attachment: fixed;
+  min-height: 100svh;
+}
+
+#root {
+  min-height: 100svh;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  margin: 0;
+  color: var(--text);
+}
+
+p {
+  margin: 0;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
